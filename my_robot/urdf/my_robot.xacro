@@ -12,7 +12,7 @@
     <pose>0 0 0.1 0 0 0</pose>
 
     <inertial>
-      <mass value="15.0"/>
+      <mass value="30.0"/>
       <origin xyz="0.0 0 0" rpy=" 0 0 0"/>
       <inertia
           ixx="0.1" ixy="0" ixz="0"
@@ -45,7 +45,7 @@
     <collision name='back_caster_collision'>
       <origin xyz="-0.1 0 -0.075" rpy=" 0 0 0"/>
       <geometry>
-        <sphere radius="0.075"/>
+        <sphere radius="0.073"/>
       </geometry>
     </collision>
 
@@ -59,7 +59,7 @@
     <collision name='front_caster_collision'>
       <origin xyz="0.1 0 -0.075" rpy=" 0 0 0"/>
       <geometry>
-        <sphere radius="0.075"/>
+        <sphere radius="0.073"/>
       </geometry>
     </collision>
 
@@ -71,6 +71,10 @@
     </visual>
 
   </link>
+
+  <gazebo reference="chassis">
+    <material>Gazebo/Green</material>
+  </gazebo>
 
   <joint type="continuous" name="mid_right_wheel_hinge">
     <origin xyz="0 -0.2 0" rpy="0 0 0"/>
@@ -85,7 +89,7 @@
     <pose>0 0 0.1 0 0 0</pose>
 
     <inertial>
-      <mass value="5.0"/>
+      <mass value="10.0"/>
       <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
       <inertia
           ixx="0.1" ixy="0" ixz="0"
@@ -112,9 +116,13 @@
       <material name="black">
         <color rgba="0.0 0.0 0.0 1.0"/>
       </material>
-   </visual>
+    </visual>
 
   </link>
+  
+  <gazebo reference="mid_right_wheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
 
   <joint type="continuous" name="mid_left_wheel_hinge">
     <origin xyz="0 0.2 0" rpy="0 0 0"/>
@@ -129,7 +137,7 @@
     <pose>0 0 0.1 0 0 0</pose>
 
     <inertial>
-      <mass value="5.0"/>
+      <mass value="10.0"/>
       <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
       <inertia
           ixx="0.1" ixy="0" ixz="0"
@@ -160,6 +168,10 @@
     
   </link>
 
+  <gazebo reference="mid_left_wheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
   <joint type="fixed" name="camera_joint">
     <origin xyz="0.2 0 0" rpy="0 0 0"/>
     <parent link="chassis"/>
@@ -186,6 +198,9 @@
       <geometry>
         <box size=".05 .05 .05"/>
       </geometry>
+      <material name="red">
+        <color rgba="1.0 0.0 0.0 1.0"/>
+      </material>
     </collision>
 
     <visual name='camera_visual'>
@@ -193,9 +208,16 @@
       <geometry>
         <box size=".05 .05 .05"/>
       </geometry>
+      <material name="red">
+        <color rgba="1.0 0.0 0.0 1.0"/>
+      </material>
     </visual>
     
   </link>
+
+  <gazebo reference="camera">
+    <material>Gazebo/Red</material>
+  </gazebo>
 
   <joint type="fixed" name="hokuyo_joint">
     <origin xyz="0.15 0 0.1" rpy="0 0 0"/>

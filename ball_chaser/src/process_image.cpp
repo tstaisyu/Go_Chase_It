@@ -34,23 +34,25 @@ void process_image_callback(const sensor_msgs::Image img)
     //About the data structure of images.
 
     bool ball_found = false;
-    for (int i = 0; i < img.height * img.step; i++) {
-        if (img.data[i] == white_pixel) {
+    for (int i = 0; i < img.height * img.step; i+=3) {
+        if ((img.data[i] == white_pixel) && (img.data[i+1] == white_pixel) && (img.data[i+2] == white_pixel)) {
             if (i % img.step < img.step /3) {
-                drive_robot(0.0, 0.2);
+                drive_robot(0.0, 0.05); // Turn left
                 ball_found =true;
                 break;
             } else if (i % img.step < 2 * img.step /3) {
-                drive_robot(0.5, 0.0);
+                drive_robot(0.3, 0.0); // Move forward
                 ball_found =true;
                 break;
             } else {
-                drive_robot(0.0, -0.2);
+                drive_robot(0.0, -0.05); // Turn right
                 ball_found =true;
                 break;
             }
         }
-        ball_found = false;
+        if (ball_found) {
+            break;
+        }
     }
     if (!ball_found) {
         drive_robot(0.0, 0.0);
